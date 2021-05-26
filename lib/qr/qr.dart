@@ -8,10 +8,10 @@ String generateQR(String data) {
 
   var result = '';
 
-  for (int y = 0; y < qrCode.moduleCount; y += 2) {
+  for (var y = 0; y < qrCode.moduleCount; y += 2) {
     // even number of rows in qr
     if (y != qrCode.moduleCount - 1) {
-      for (int x = 0; x < qrCode.moduleCount; x++) {
+      for (var x = 0; x < qrCode.moduleCount; x++) {
         if (qrCode.isDark(x, y) == qrCode.isDark(x, y + 1)) {
           qrCode.isDark(x, y) ? result += '█' : result += ' ';
         } else {
@@ -21,7 +21,7 @@ String generateQR(String data) {
       result += '\n';
     } else {
       // special treatment for last row in odd numbered qr
-      for (int x = 0; x < qrCode.moduleCount; x++) {
+      for (var x = 0; x < qrCode.moduleCount; x++) {
         qrCode.isDark(x, y) ? result += '▀' : result += ' ';
       }
     }
