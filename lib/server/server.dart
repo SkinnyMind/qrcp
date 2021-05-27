@@ -4,10 +4,9 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart';
 
-void send({
+Future<HttpServer> send({
   required String action,
   required String address,
-  required int port,
   required String urlPath,
   required String filePath,
 }) async {
@@ -23,15 +22,12 @@ void send({
     return Response.ok(
       file.openRead(),
       headers: {
+        HttpHeaders.contentTypeHeader: 'application/octet-stream',
         'Content-Disposition':
             'attachment; filename="${file.path.split('/').last}"',
       },
     );
   });
 
-  await shelf_io.serve(
-    router,
-    '$address',
-    port,
-  );
+  return shelf_io.serve(router, '$address', 0);
 }

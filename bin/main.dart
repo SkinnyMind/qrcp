@@ -24,28 +24,34 @@ void main(List args) {
   }
 }
 
-void _generateQRandServer({required String action, String? filePath}) {
-  final address = 'localhost';
-  final port = 1337;
+void _generateQRandServer({required String action, String? filePath}) async {
+  final address = await getLocalIpAddress();
   final urlPath = getRandomUrlPath();
 
+  final HttpServer _server;
+
   if (action == 'send') {
-    server.send(
+    _server = await server.send(
       action: action,
       address: address,
-      port: port,
       urlPath: urlPath,
       filePath: filePath!,
     );
   } else {
     print('Implement receiving');
+    _server = await server.send(
+      action: action,
+      address: address,
+      urlPath: urlPath,
+      filePath: filePath!,
+    );
   }
 
-  final qr = generateQR('http://$address:$port/$action/$urlPath');
+  final qr = generateQR('http://$address:${_server.port}/$action/$urlPath');
 
   print(
       'Scan the following URL with QR scanner to start the file transfer (press CTRL+C to quit):');
-  print('http://$address:$port/$action/$urlPath');
+  print('http://$address:${_server.port}/$action/$urlPath');
   print('');
   print(qr);
 }
