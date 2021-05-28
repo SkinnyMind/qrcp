@@ -8,6 +8,9 @@ String generateQR(String data) {
 
   var result = '';
 
+  // Draws dark blocks in terminal with light background.
+  // Swap ternary result if your terminal have dark bacgkround.
+  // Most of the qr scanners won't have any problems reading qr either way.
   for (var y = 0; y < qrCode.moduleCount; y += 2) {
     // even number of rows in qr
     if (y != qrCode.moduleCount - 1) {
