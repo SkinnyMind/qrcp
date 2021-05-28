@@ -37,12 +37,10 @@ void _generateQRandServer({required String action, String? filePath}) async {
       filePath: filePath!,
     );
   } else {
-    print('Implement receiving');
-    _server = await server.send(
+    _server = await server.receive(
       action: action,
       address: address,
       urlPath: urlPath,
-      filePath: filePath!,
     );
   }
 
