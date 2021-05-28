@@ -52,7 +52,7 @@ Future<HttpServer> receive({
   <body>
     <h3>Select a file to transfer</h3>
     <form id="upload-form">
-      <input type="file" name="file" /><br /><br />
+      <input type="file" id="files" name="files" multiple/><br /><br />
       <input type="submit" id="submit" name="submit" value="Transfer" />
     </form>
     <script>
