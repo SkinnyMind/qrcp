@@ -6,7 +6,7 @@ String generateQR(String data) {
     errorCorrectLevel: QrErrorCorrectLevel.L,
   )..make();
 
-  var result = '';
+  var result = StringBuffer();
 
   // Draws dark blocks in terminal with light background.
   // Swap ternary result if your terminal have dark bacgkround.
@@ -16,18 +16,18 @@ String generateQR(String data) {
     if (y != qrCode.moduleCount - 1) {
       for (var x = 0; x < qrCode.moduleCount; x++) {
         if (qrCode.isDark(x, y) == qrCode.isDark(x, y + 1)) {
-          qrCode.isDark(x, y) ? result += '█' : result += ' ';
+          qrCode.isDark(x, y) ? result.write('█') : result.write(' ');
         } else {
-          qrCode.isDark(x, y) ? result += '▀' : result += '▄';
+          qrCode.isDark(x, y) ? result.write('▀') : result.write('▄');
         }
       }
-      result += '\n';
+      result.write('\n');
     } else {
       // special treatment for last row in odd numbered qr
       for (var x = 0; x < qrCode.moduleCount; x++) {
-        qrCode.isDark(x, y) ? result += '▀' : result += ' ';
+        qrCode.isDark(x, y) ? result.write('▀') : result.write(' ');
       }
     }
   }
-  return result;
+  return result.toString();
 }
