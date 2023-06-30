@@ -4,9 +4,10 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  qr: ^2.0.0
-  shelf_router: ^1.0.0
   mime: ^1.0.0
+  qr: ^2.0.0
+  shelf: ^1.4.1
+  shelf_router: ^1.0.0
 
 dev_dependencies:
-  pedantic: ^1.11.0
+  lints: ^2.1.1

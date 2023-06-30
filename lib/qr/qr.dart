@@ -6,7 +6,7 @@ String generateQR(String data) {
     errorCorrectLevel: QrErrorCorrectLevel.L,
   )..make();
 
-  var result = StringBuffer();
+  final result = StringBuffer();
 
   // Draws dark blocks in terminal with light background.
   // Swap ternary result if your terminal have dark bacgkround.

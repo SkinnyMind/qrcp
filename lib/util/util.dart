@@ -3,13 +3,13 @@ import 'dart:math';
 
 /// Returns a random string of 4 alphanumeric characters
 String getRandomUrlPath() {
-  const _chars =
+  const chars =
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-  final _rng = Random();
+  final rng = Random();
   return String.fromCharCodes(
     Iterable.generate(
       4,
-      (_) => _chars.codeUnitAt(_rng.nextInt(_chars.length)),
+      (_) => chars.codeUnitAt(rng.nextInt(chars.length)),
     ),
   );
 }

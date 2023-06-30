@@ -31,7 +31,7 @@ Future<HttpServer> send({
     );
   });
 
-  return shelf_io.serve(router, '$address', 0);
+  return shelf_io.serve(router, address, 0);
 }
 
 Future<HttpServer> receive({
@@ -89,16 +89,16 @@ Future<HttpServer> receive({
 </html>
   ''';
 
-  Future upload(Request request) async {
+  Future<void> upload(Request request) async {
     var header = HeaderValue.parse(request.headers['content-type']!);
 
-    await for (MimeMultipart part
+    await for (final MimeMultipart part
         in MimeMultipartTransformer(header.parameters['boundary']!)
             .bind(request.read())) {
       header = HeaderValue.parse(part.headers['content-disposition']!);
       final fileName = header.parameters['filename']!;
       final file = File(fileName);
-      var fileSink = file.openWrite();
+      final fileSink = file.openWrite();
       await part.pipe(fileSink);
       await fileSink.close();
     }
@@ -127,5 +127,5 @@ Future<HttpServer> receive({
     );
   });
 
-  return shelf_io.serve(router, '$address', 0);
+  return shelf_io.serve(router, address, 0);
 }
