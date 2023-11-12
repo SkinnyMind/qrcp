@@ -27,11 +27,12 @@ Future<HttpServer> send({
         HttpHeaders.contentTypeHeader: 'application/octet-stream',
         'Content-Disposition':
             'attachment; filename="${file.path.split('/').last}"',
+        HttpHeaders.contentLengthHeader: file.lengthSync().toString(),
       },
     );
   });
 
-  return shelf_io.serve(router, address, 0);
+  return shelf_io.serve(router.call, address, 0);
 }
 
 Future<HttpServer> receive({
@@ -111,7 +112,9 @@ Future<HttpServer> receive({
   ) {
     return Response.ok(
       uploadPage,
-      headers: {HttpHeaders.contentTypeHeader: 'text/html'},
+      headers: {
+        HttpHeaders.contentTypeHeader: 'text/html',
+      },
     );
   });
 
@@ -127,5 +130,5 @@ Future<HttpServer> receive({
     );
   });
 
-  return shelf_io.serve(router, address, 0);
+  return shelf_io.serve(router.call, address, 0);
 }

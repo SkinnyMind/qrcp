@@ -53,7 +53,6 @@ linter:
     - prefer_null_aware_method_calls
     - require_trailing_commas
     - secure_pubspec_urls
-    - sized_box_shrink_expand # flutter
     - sort_constructors_first
     - sort_pub_dependencies
     - sort_unnamed_constructors_first
@@ -65,8 +64,6 @@ linter:
     - unnecessary_parenthesis
     - unnecessary_raw_strings
     - unnecessary_to_list_in_spreads
-    - use_colored_box # flutter
-    - use_decorated_box # flutter
     - use_enums
     - use_if_null_to_convert_nulls_to_bools
     - use_is_even_rather_than_modulo
