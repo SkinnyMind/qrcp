@@ -1,4 +1,4 @@
-# $ qrcp
+# qrcp
 
 Dart implementation of basic functionality of https://github.com/claudiodangelis/qrcp
 
@@ -20,9 +20,17 @@ Most QR apps can detect URLs in decoded text and act accordingly (i.e. open the 
 
 # Installation
 
-## Linux
+## Building from source
 
-```sh
+After cloning repository, navigate to the `qrcp` folder and perform:
+
+```shell
+$ dart pub get
+```
+
+### Linux
+
+```shell
 # Build executable
 dart compile exe bin/main.dart -o ./qrcp
 
@@ -34,7 +42,7 @@ sudo mv qrcp /usr/local/bin
 
 ## Send a file
 
-```sh
+```shell
 qrcp my_file.pdf
 ```
 
@@ -44,6 +52,6 @@ When receiving files, `qrcp` serves an "upload page" through which you can choos
 
 _note: receives to the current directory_
 
-```sh
+```shell
 qrcp receive
 ```
