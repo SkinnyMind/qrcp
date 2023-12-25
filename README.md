@@ -20,6 +20,8 @@ Most QR apps can detect URLs in decoded text and act accordingly (i.e. open the 
 
 # Installation
 
+You can download compiled binary from "Releases" tab of GitHub
+
 ## Building from source
 
 After cloning repository, navigate to the `qrcp` folder and perform:
