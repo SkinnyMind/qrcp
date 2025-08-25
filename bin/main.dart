@@ -32,6 +32,7 @@ Future<void> _generateQRandServer({
   final address = await getLocalIpAddress();
   final urlPath = getRandomUrlPath();
 
+  // Ok to use here
   // ignore: no_leading_underscores_for_local_identifiers
   final HttpServer _server;
 
@@ -53,8 +54,9 @@ Future<void> _generateQRandServer({
   final qr = generateQR('http://$address:${_server.port}/$action/$urlPath');
 
   stdout.writeln(
-      'Scan the following URL with QR scanner to start the file transfer '
-      '(press CTRL+C to quit):');
+    'Scan the following URL with QR scanner to start the file transfer '
+    '(press CTRL+C to quit):',
+  );
   stdout.writeln('http://$address:${_server.port}/$action/$urlPath');
   stdout.writeln();
   stdout.writeln(qr);

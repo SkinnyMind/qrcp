@@ -11,7 +11,7 @@ Future<HttpServer> send({
   required String address,
   required String urlPath,
   required String filePath,
-}) async {
+}) {
   final router = Router();
 
   final file = File(filePath);
@@ -39,7 +39,7 @@ Future<HttpServer> receive({
   required String action,
   required String address,
   required String urlPath,
-}) async {
+}) {
   final router = Router();
 
   final uploadPage = '''
@@ -93,9 +93,9 @@ Future<HttpServer> receive({
   Future<void> upload(Request request) async {
     var header = HeaderValue.parse(request.headers['content-type']!);
 
-    await for (final MimeMultipart part
-        in MimeMultipartTransformer(header.parameters['boundary']!)
-            .bind(request.read())) {
+    await for (final MimeMultipart part in MimeMultipartTransformer(
+      header.parameters['boundary']!,
+    ).bind(request.read())) {
       header = HeaderValue.parse(part.headers['content-disposition']!);
       final fileName = header.parameters['filename']!;
       final file = File(fileName);
@@ -112,9 +112,7 @@ Future<HttpServer> receive({
   ) {
     return Response.ok(
       uploadPage,
-      headers: {
-        HttpHeaders.contentTypeHeader: 'text/html',
-      },
+      headers: {HttpHeaders.contentTypeHeader: 'text/html'},
     );
   });
 
