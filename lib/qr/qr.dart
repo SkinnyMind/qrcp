@@ -1,9 +1,9 @@
 import 'package:qr/qr.dart';
 
 String generateQR(String data) {
-  final qrCode = QrCode.fromData(
-    data: data,
-    errorCorrectLevel: QrErrorCorrectLevel.L,
+  final qrCode = QrCode(
+    payload: QrPayload.fromString(data),
+    errorCorrectLevel: QrErrorCorrectLevel.low,
   );
   final qrImage = QrImage(qrCode);
   final result = StringBuffer();
